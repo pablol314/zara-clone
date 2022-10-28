@@ -1,0 +1,53 @@
+
+<% layout("layouts/boilerplate.ejs") %>
+
+<nav class="navbar products-title">
+    <div class="container-fluid">
+      <span class="mb-0 h1">Productos disponibles</span>
+    </div>
+  </nav>
+<section class="shop">
+    <div class="">
+        <div class="row">
+            <% for (let product of products) {%>
+            <div class="col-6 col-sm-4 col-lg-2 card-product">
+                <div class="card border-1 bg-light">
+                    <a href="/sellpage/<%=product._id%>">
+                    <div class="card-body">
+                        <!-- <img src="/purseTest/imagen1.jpg" class="img-fluid" alt=""> -->
+                        <% if(product.images.length){%> 
+                            <div>
+                                <img class="img-fluid" alt="" src="<%= product.images[0].thumbnail %> ">
+                            </div>
+                            <% } else {%>
+                                <img class="img-fluid" alt="" src="/purseTest/imagen1.jpg">
+                            <% }%>  
+                    </div>
+                </div>
+                <div class="info-product">
+                    <div class="name-product">
+                        <a href="/sellpage/<%=product._id%>">
+                            <span><%= product.title %> </span>
+                        </a>
+                    </div>
+
+                    <div class="price-product-list">
+                        <% if(product.price_discount != 0) { %>
+                            <span style="text-decoration:line-through;"><%= (product.price).toLocaleString("es-AR", { minimumFractionDigits: 2 })%> ARS</span>
+                    </div>
+                    <div class="price-product-discount">
+                            <span><%= (product.price_discount).toLocaleString("es-AR", { minimumFractionDigits: 2 })%> ARS</span> 
+                        <% } else {%>
+                            <span><%= (product.price).toLocaleString("es-AR", { minimumFractionDigits: 2 })%> ARS</span>
+                        <% } %> 
+                    </div>
+                </a>
+                </div>
+            </div>
+            <% } %> 
+
+        </div>
+    </div>
+</section>
+
+<link rel="stylesheet" href="/stylesheets/sellpage.css">

@@ -1,0 +1,60 @@
+<% layout("layouts/boilerplate.ejs") %>
+
+<div class="row d-flex justify-content-center">
+    <div class="col-lg-4">
+        <div class="card border-1 bg-light">
+            <div class="card-body">
+
+                <% if((product.images).length){ %>
+                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <% product.images.forEach((img, i) => { %>
+                                <div class="carousel-item <%= i === 0 ? "active" : ""%>">
+                                    <img class="d-block w-100" src="<%=img.thumbnail%>" alt="First slide">
+                                </div>
+                            <% }) %> 
+                          
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                          </button>
+                          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                          </button>
+                    </div>
+                <% } else {%>
+                    <img src="/purseTest/imagen2.jpg" class="img-fluid" alt="">
+                <% }%>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col1">
+        <div class="card info-product">
+            <div class="card-body">
+              <h5 class="card-title"><%= product.title %></h5>
+              <p class="card-text"><%= product.description %></p>
+                <% if(product.price_discount != 0) { %>
+                <p style="text-decoration:line-through;"><%= (product.price).toLocaleString("es-AR", { minimumFractionDigits: 2 })%> ARS</p>
+                <p><%= (product.price_discount).toLocaleString("es-AR", { minimumFractionDigits: 2 })%> ARS</p>
+                <% } else {%>
+                <p><%= (product.price).toLocaleString("es-AR", { minimumFractionDigits: 2 })%> ARS</p>
+                <% } %>
+            </div>
+            <a href="https://api.whatsapp.com/send/?phone=54<%=process.env.CEL%>&text=_Lo+quiero!_+&#128561+&#128158%0A&#128091+Producto:+<%=product.title%>%0A&#128179+Precio:+<%=product.price%> ARS+||+&#127873+<%= (product.price_discount!=0) ? `Precio+de+Promo:+${product.price_discount} ARS` : "" ;%>%0A&#128204Link:+<%=process.env.PAGE%>/sellpage/<%=product._id%>&type=phone_number&app_absent=0" class="card-link">
+                <div class="card-body buy-botton">
+                    Comprar
+                </div>
+            </a>
+            <% if (currentUser){ %>
+            <a class="mt-2" href="/sellpage/<%=product._id%>/edit">Modificar</a>
+            <form action="/sellpage/<%=product._id%>?_method=DELETE" method="POST">
+                <button class="delete-button">Eliminar Producto</button>
+            </form>
+            <% }%>
+          </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="/stylesheets/showpage.css">

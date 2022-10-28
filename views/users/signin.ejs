@@ -1,0 +1,26 @@
+<% layout("layouts/boilerplate.ejs") %>
+
+    <div class="d-flex justify-content-center mt-5">
+        <div class="card sign-form">
+            <form action="/signin" method="POST" class="validated-form" novalidate>
+                <div class="signin-title">
+                    <p>INICIAR SESIÓN</p>
+                </div>
+                <div class="form-outline mb-4">
+                <input type="username" name="username" id="form2Example1" class="form-control_" placeholder="USUARIO" required/>
+                </div>
+            
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                <input type="password" name="password" id="form2Example2" class="form-control_" placeholder="CONTRASEÑA" required/>
+                </div>
+            
+                <!-- Submit button -->
+                    <button class="buy-botton">INICIAR SESIÓN</button>
+            
+            </form>
+        </div>
+    </div>
+
+
+<link rel="stylesheet" href="/stylesheets/signin.css">

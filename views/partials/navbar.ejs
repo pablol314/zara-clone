@@ -1,0 +1,34 @@
+
+
+
+<nav class="navbar sticky-top navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">PurseParadise</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="navbar-nav ms-auto">
+        <ul class="navbar-nav mb-2 mb-lg-0" >
+          <li class="nav-item">
+            <a class="nav-link" href="/sellpage">PRODUCTOS</a>
+          </li>
+          <% if (!currentUser){ %>
+          <li class="nav-item">
+            <a class="nav-link" href="/signin">INICIAR SESIÓN</a>
+          </li>
+          <% } else { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/sellpage/addproduct">AGREGAR PRODUCTO</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">CERRAR SESIÓN</a>
+          </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<link rel="stylesheet" href="/stylesheets/navbar.css">

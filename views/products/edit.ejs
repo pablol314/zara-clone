@@ -1,0 +1,75 @@
+<% layout("layouts/boilerplate.ejs") %>
+
+    <div class="d-flex justify-content-center mt-5">
+        <div class="card sign-form">
+            <form action="/sellpage/<%=product._id%>?_method=PUT" method="POST" novalidate class="validated-form">
+                <div class="signin-title">
+                    <p>MODIFICAR PRODUCTO</p>
+                </div>
+                <div class="form-outline mb-4">
+                    <label for="name" class="mb-2">Nombre</label>
+                    <input type="text" id="name" class="form-control_" name="product[title]" value="<%=product.title%>" required/>
+                    <div class="invalid-feedback">
+                        Este campo es obligatorio.
+                    </div>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <label for="price" class="mb-2">Precio</label>
+                    <input type="text" id="price" class="form-control_" name="product[price]" value="<%=product.price%>" required/>
+                    <div class="invalid-feedback">
+                        Este campo es obligatorio.
+                    </div>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <label for="price_discount" class="mb-2">Precio de promo</label>
+                    <input type="text" id="price_discount" class="form-control_" name="product[price_discount]" value="<%=product.price_discount%>"/>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <label for="image" class="mb-2">Imagen</label>
+                    <input type="text" id="image" class="form-control_" name="product[image]" value="<%=product.image%>" required/>
+                    <div class="invalid-feedback">
+                        Este campo es obligatorio.
+                    </div>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <label for="description">Descripción</label>
+                    <textarea name="product[description]" id="description" cols="30" rows="10"><%=product.description%></textarea>
+                </div>
+            
+                <!-- Submit button -->
+                    <button class="buy-botton">MODIFICAR PRODUCTO</button>
+            
+            </form>
+            <a href="/sellpage/<%= product._id %>">Volver al producto</a>
+        </div>
+    </div>
+
+
+<link rel="stylesheet" href="/stylesheets/signin.css">
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.validated-form')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+</script>
